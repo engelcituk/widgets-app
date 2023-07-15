@@ -36,6 +36,12 @@ const appMenuItems = <MenuItem>[
     link: '/progress',
     icon: Icons.refresh_rounded
   ),
+  MenuItem(
+    title: 'Snackbars y Dialogs', 
+    subTitle: 'Indicadores en pantalla',
+    link: '/snackbars',
+    icon: Icons.info_outline
+  ),
   //  MenuItem(
   //   title: 'Animacciones', 
   //   subTitle: 'Animaciones cool',
@@ -55,12 +61,6 @@ const appMenuItems = <MenuItem>[
   //   icon: Icons.screenshot_outlined
   // ),
  
-  // MenuItem(
-  //   title: 'Snackbar', 
-  //   subTitle: 'Vista Snackbar',
-  //   link: '/snackbar',
-  //   icon: Icons.science_sharp
-  // ),
   // MenuItem(
   //   title: 'Progress', 
   //   subTitle: 'Vista progress',
