@@ -30,4 +30,40 @@ const appMenuItems = <MenuItem>[
     link: '/cards',
     icon: Icons.credit_card
   ),
+   MenuItem(
+    title: 'Animacciones', 
+    subTitle: 'Animaciones cool',
+    link: '/animated',
+    icon: Icons.animation
+  ),
+  MenuItem(
+    title: 'Tutorial', 
+    subTitle: 'Vista tutorial',
+    link: '/tutorial',
+    icon: Icons.info_outline_rounded
+  ),
+  MenuItem(
+    title: 'Infinite Scroll', 
+    subTitle: 'Vista scroll infinito',
+    link: '/infinite-scroll',
+    icon: Icons.screenshot_outlined
+  ),
+  MenuItem(
+    title: 'Progress', 
+    subTitle: 'Vista progress',
+    link: '/progress',
+    icon: Icons.local_activity
+  ),
+  MenuItem(
+    title: 'Snackbar', 
+    subTitle: 'Vista Snackbar',
+    link: '/snackbar',
+    icon: Icons.science_sharp
+  ),
+  MenuItem(
+    title: 'Progress', 
+    subTitle: 'Vista progress',
+    link: '/progress',
+    icon: Icons.bar_chart
+  ),
 ];
