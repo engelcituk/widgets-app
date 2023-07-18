@@ -42,12 +42,12 @@ const appMenuItems = <MenuItem>[
     link: '/snackbars',
     icon: Icons.info_outline
   ),
-  //  MenuItem(
-  //   title: 'Animacciones', 
-  //   subTitle: 'Animaciones cool',
-  //   link: '/animated',
-  //   icon: Icons.animation
-  // ),
+   MenuItem(
+    title: 'Animated container', 
+    subTitle: 'Stateful widget animado',
+    link: '/animated',
+    icon: Icons.animation
+  ),
   // MenuItem(
   //   title: 'Tutorial', 
   //   subTitle: 'Vista tutorial',
