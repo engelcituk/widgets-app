@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SnackBarScreen extends StatelessWidget {
 
@@ -11,12 +12,52 @@ class SnackBarScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Snackabar y Diálogos'),
       ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            FilledButton.tonal(
+              onPressed: (){
+                showAboutDialog(
+                  context: context,
+                  children: [
+                    const Text('Qui pariatur amet nulla ullamco fugiat excepteur consectetur in. Esse sit consequat qui ullamco dolor. Aliquip labore ipsum officia incididunt eu nulla nulla do occaecat pariatur reprehenderit exercitation.')
+                  ]
+                );
+              },
+              child: Text('Licencias usadas')
+            ),
+            FilledButton.tonal(
+              onPressed: () => opendialog(context),
+              child: const Text('Mostrar Dialogo')
+            )
+          ],
+        ),
+      ),
       floatingActionButton: FloatingActionButton.extended(
         label: const  Text('Monstrar Snackbar'),
         icon: const Icon( Icons.remove_red_eye_outlined),
         onPressed:() => showCustonSnackbar(context),
       ),
     );
+  }
+
+  void opendialog(BuildContext context){
+    showDialog(
+      context: context, 
+      barrierDismissible: false,
+      builder: (context) => AlertDialog(
+        title: const Text('Estás seguro'),
+        content: const Text('Adipisicing id irure consequat esse. Culpa officia voluptate ullamco ex quis incididunt ullamco ipsum magna duis. Ipsum aute cillum deserunt laboris ut dolore labore esse.'),
+        actions: [
+          TextButton(
+            onPressed: () => context.pop(),
+            child: const Text('Cancelar') 
+          ),
+          FilledButton(onPressed: () => context.pop(), child: const Text('Aceptar'))
+
+        ],
+      ),);
   }
 
   void showCustonSnackbar(BuildContext context){  
