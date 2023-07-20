@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SlideInfo {
 
@@ -26,15 +27,28 @@ class AppTutorialScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView(
-        physics: const BouncingScrollPhysics(),
-        children: slides.map(
-          (slideData) => _Slide(
-            title:slideData.title, 
-            caption: slideData.caption, 
-            imageUrl: slideData.imageUrl
+      backgroundColor: Colors.white,
+      body: Stack(
+        children: [
+          PageView(
+            physics: const BouncingScrollPhysics(),
+            children: slides.map(
+              (slideData) => _Slide(
+                title:slideData.title, 
+                caption: slideData.caption, 
+                imageUrl: slideData.imageUrl
+              )
+            ).toList(),
+          ),
+          Positioned(
+            right: 20,
+            top: 50,
+            child: TextButton(
+              child: const Text('Salir'),
+              onPressed: () => context.pop(),
+            )
           )
-        ).toList(),
+        ],
       ),
     );
   }
@@ -53,6 +67,24 @@ class _Slide extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Placeholder();
+
+    final titleStyle = Theme.of(context).textTheme.titleLarge;
+    final  captionStyle = Theme.of(context).textTheme.bodyLarge;
+
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Image(image: AssetImage(imageUrl)),
+          const SizedBox(height: 20,),
+          Text(title, style: titleStyle,),
+          const SizedBox(height: 20,),
+          Text(caption, style: captionStyle,),
+        ],
+      ),
+    );
   }
 }
