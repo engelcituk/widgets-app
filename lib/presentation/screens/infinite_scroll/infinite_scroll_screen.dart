@@ -45,6 +45,22 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
     );
   }
 
+  Future<void> onRefresh() async {
+    isLoading = true;
+    setState(() {});
+
+    await Future.delayed(const Duration(seconds: 3));
+    if ( !isMounted ) return;
+
+    isLoading = false;
+    final lastId = imageIds.last;
+    imageIds.clear();
+    imageIds.add(lastId + 1);
+    addFiveImages();
+
+    setState(() {});
+  }
+
   @override
   void initState() {
     super.initState();
@@ -74,26 +90,31 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
         context: context,
         removeTop: true,
         removeBottom: true,
-        child: ListView.builder(
-          physics: const BouncingScrollPhysics( ),
-          itemCount: imageIds.length,
-          controller: scrollController,
-          itemBuilder:(context, index) {
-            return  FadeInImage(
-              width: double.infinity,
-              height: 300,
-              fit: BoxFit.cover,
-              placeholder: const AssetImage('assets/images/jar-loading.gif'),
-              image: NetworkImage('https://picsum.photos/id/${ imageIds[index] }/500/300'),
-            );
-          },
+        child: RefreshIndicator(
+          edgeOffset: 10,
+          strokeWidth: 2,
+          onRefresh: onRefresh  ,
+          child: ListView.builder(
+            physics: const BouncingScrollPhysics( ),
+            itemCount: imageIds.length,
+            controller: scrollController,
+            itemBuilder:(context, index) {
+              return  FadeInImage(
+                width: double.infinity,
+                height: 300,
+                fit: BoxFit.cover,
+                placeholder: const AssetImage('assets/images/jar-loading.gif'),
+                image: NetworkImage('https://picsum.photos/id/${ imageIds[index] }/500/300'),
+              );
+            },
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => context.pop(),
         // child: const Icon(Icons.arrow_back),
         child: isLoading 
-        ? FadeIn(
+        ? FadeInRight(
           child: SpinPerfect(
             infinite: true,
             child: const Icon(Icons.refresh_rounded),
