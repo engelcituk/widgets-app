@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -32,6 +33,8 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
     if ( !isMounted ) return;
 
     setState(() {});
+
+    //mover el scroll
 
   }
 
@@ -88,7 +91,15 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => context.pop(),
-        child: const Icon(Icons.arrow_back),
+        // child: const Icon(Icons.arrow_back),
+        child: isLoading 
+        ? FadeIn(
+          child: SpinPerfect(
+            infinite: true,
+            child: const Icon(Icons.refresh_rounded),
+          ),
+        )
+        : FadeIn(child: const Icon(Icons.arrow_back_ios_new_outlined)),
       ),
     );
   }
