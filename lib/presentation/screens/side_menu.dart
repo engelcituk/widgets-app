@@ -13,6 +13,9 @@ class _SideMenuState extends State<SideMenu> {
 
   @override
   Widget build(BuildContext context) {
+
+    final hasNotch = MediaQuery.of(context).viewPadding.top > 35;
+
     return NavigationDrawer(
       selectedIndex: navDrawerIndex,
       onDestinationSelected: (value) {
@@ -21,14 +24,40 @@ class _SideMenuState extends State<SideMenu> {
         });
       },
       children: [
-        NavigationDrawerDestination(
-          icon: const Icon(Icons.add), 
-          label: const Text('Home Screen')
+        Padding(
+          padding: EdgeInsets.fromLTRB(28, hasNotch ? 0: 20, 16, 10),
+          child: const Text('Main'),
         ),
-         NavigationDrawerDestination(
-          icon: const Icon(Icons.add_shopping_cart_rounded), 
-          label: const Text('Otra Pantalla')
-        )
+
+        ...appMenuItems.
+          sublist(0, 3).
+          map(( menu ) => 
+            NavigationDrawerDestination(
+              icon: Icon(menu.icon), 
+              label: Text(menu.title)
+            )
+        ),
+
+      
+        const Padding(
+          padding: EdgeInsets.fromLTRB(28, 16, 28, 10),
+          child: Divider(),
+        ),
+
+        const Padding(
+          padding: EdgeInsets.fromLTRB(28, 10, 16, 10),
+          child:  Text('More options'),
+        ),
+
+
+         ...appMenuItems.
+          sublist(3).
+          map(( menu ) => 
+            NavigationDrawerDestination(
+              icon: Icon(menu.icon), 
+              label: Text(menu.title)
+            )
+        ),
       ]
     );
   }
