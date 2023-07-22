@@ -66,6 +66,12 @@ const appMenuItems = <MenuItem>[
     link: '/infinite',
     icon: Icons.list_alt_rounded
   ),
+  MenuItem(
+    title: 'Counter', 
+    subTitle: 'Counter screen',
+    link: '/counter',
+    icon: Icons.countertops
+  ),
  
   // MenuItem(
   //   title: 'Progress', 
