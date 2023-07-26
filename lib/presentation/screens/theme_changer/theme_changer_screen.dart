@@ -22,7 +22,7 @@ class ThemeChangerSCreen extends ConsumerWidget {
             // icon: Icon( Icons.light_mode_outlined),
             icon: Icon( isDarkMode ? Icons.dark_mode_outlined: Icons.light_mode_outlined),
             onPressed: (){
-              
+              ref.read(isDarkModeProvider.notifier).state = !isDarkMode;
             }
           )
         ],
@@ -39,10 +39,12 @@ class _ThemeChangerView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
 
     final List<Color> colors = ref.watch(colorListProvider);
+    final int selectedColor = ref.watch(selectedColorProvider);
 
     return ListView.builder(
       itemCount: colors.length,
       itemBuilder: (context, index) {
+
         final color = colors[index];
 
         return RadioListTile(
@@ -50,8 +52,10 @@ class _ThemeChangerView extends ConsumerWidget {
           subtitle: Text('${color.value}'),
           activeColor: color,
           value: index, 
-          groupValue: 4,
+          groupValue: selectedColor,
           onChanged: (value){
+            
+            ref.read(selectedColorProvider.notifier).state = index;
 
           }
         );
