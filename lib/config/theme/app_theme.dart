@@ -33,4 +33,13 @@ class AppTheme {
     )
   );
 
+  // mètodo que regresa una nueva instancia de AppTheme
+  AppTheme copyWith({
+    int? selectedColor,
+    bool? isDarkMode
+  }) => AppTheme(
+    selectedColor: selectedColor ?? this.selectedColor,
+    isDarkMode: isDarkMode ?? this.isDarkMode,
+  );
+
 }
